@@ -46,6 +46,10 @@ set( SERVER_SOURCES
 	${TOBICORE_ROOT}/src/libtid/main_server.cpp
 )
 
+set( CLIENT_SOURCES
+	${TOBICORE_ROOT}/src/libtid/main_client.cpp
+)
+
 
 foreach( src ${SOURCES} )
   set( FULL_SOURCES ${FULL_SOURCES} "${TOBICORE_ROOT}/src/libtid/${src}" )
@@ -60,5 +64,15 @@ add_dependencies( tid tobicore-git )
 
 set( LIBTID_LIBRARIES tid tobiid tobicore ${Boost_LIBRARIES} ${SDL_LIBRARY} )
 
-add_executable( tid-server ${SERVER_SOURCES} )
-target_link_libraries( tid-server ${LIBTID_LIBRARIES} )
+set( BUILD_TID_SERVER true CACHE BOOL "build TiD Server?" )
+set( BUILD_TID_CLIENT true CACHE BOOL "build TiD Client?" )
+
+if( ${BUILD_TID_SERVER} )
+  add_executable( tid-server ${SERVER_SOURCES} )
+  target_link_libraries( tid-server ${LIBTID_LIBRARIES} )
+endif()
+
+if( ${BUILD_TID_CLIENT} )
+  add_executable( tid-client ${CLIENT_SOURCES} )
+  target_link_libraries( tid-client ${LIBTID_LIBRARIES} )
+endif()
