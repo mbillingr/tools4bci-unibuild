@@ -1,6 +1,10 @@
 project( libtia )
 
-add_definitions( -DTIXML_USE_TICPP )
+function( configure_libtia )
+  add_definitions( -DTIXML_USE_TICPP )
+endfunction( configure_libtia )
+
+configure_libtia()
 
 external_package( ticpp )
 
