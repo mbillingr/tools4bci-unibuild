@@ -1,5 +1,12 @@
 
-set( LIBTID_INCLUDE_DIRS ${TOBICORE_ROOT}/src/libtid )
+external_package( SDL )
+
+find_package( Boost REQUIRED COMPONENTS system thread )
+
+set( LIBTID_INCLUDE_DIRS 
+  ${TOBICORE_ROOT}/src/libtid
+  ${Boost_INCLUDE_DIR}
+)
 
 include_directories( ${LIBTID_INCLUDE_DIRS} )
 
@@ -35,6 +42,10 @@ set( SOURCES
 	messages/tid_message_parser_1_0.cpp
 )
 
+set( SERVER_SOURCES
+	${TOBICORE_ROOT}/src/libtid/main_server.cpp
+)
+
 
 foreach( src ${SOURCES} )
   set( FULL_SOURCES ${FULL_SOURCES} "${TOBICORE_ROOT}/src/libtid/${src}" )
@@ -46,3 +57,8 @@ endforeach( hdr )
 
 add_library( tid ${FULL_HEADERS} ${FULL_SOURCES} )
 add_dependencies( tid tobicore-git )
+
+set( LIBTID_LIBRARIES tid tobiid tobicore ${Boost_LIBRARIES} ${SDL_LIBRARY} )
+
+add_executable( tid-server ${SERVER_SOURCES} )
+target_link_libraries( tid-server ${LIBTID_LIBRARIES} )
