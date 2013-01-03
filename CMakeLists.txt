@@ -6,6 +6,8 @@ find_package( Git REQUIRED )
 
 set( T4B_LIBBUNDLE_ROOT ${CMAKE_SOURCE_DIR}/extern CACHE PATH "Path to the tools4bci external library bundle" )
 
+set( BUILD_SHARED_LIBS true CACHE BOOL "Shared libs or static libs..." )
+
 include_directories( ${CMAKE_SOURCE_DIR} )
 
 function( sysinfo )
