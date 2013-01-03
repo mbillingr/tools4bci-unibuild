@@ -6,3 +6,4 @@ include_directories( ${TOBICORE_INCLUDE_DIRS} )
 
 add_subdirectory( tobicore )
 add_subdirectory( tobiic )
+add_subdirectory( tobiid )
