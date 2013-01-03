@@ -1,0 +1,3 @@
+[submodule "tools4bci/libtia-code"]
+	path = tools4bci/libtia-code
+	url = git://git.code.sf.net/p/tools4bci/libtia/code
