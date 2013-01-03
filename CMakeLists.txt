@@ -23,20 +23,24 @@ function( sysinfo )
   message( "Bit depth: " ${T4B_BIT_DEPTH} )
 endfunction( sysinfo )
 
+function( git_clone TARGET REPO DIR BRANCH )
+  execute_process( COMMAND ${GIT_EXECUTABLE} clone ${REPO} ${DIR} )
+  execute_process( COMMAND ${GIT_EXECUTABLE} checkout ${BRANCH}  WORKING_DIRECTORY ${DIR} )
+endfunction( git_clone )
+
 function( git_update TARGET REPO DIR BRANCH )
-  execute_process( 
-    COMMAND ${GIT_EXECUTABLE} clone ${REPO} ${DIR}
-    COMMAND ${GIT_EXECUTABLE} checkout ${BRANCH}
-    WORKING_DIRECTORY ${DIR} )
+  git_clone( ${TARGET} ${REPO} ${DIR} ${BRANCH} )
   add_custom_command( 
     OUTPUT ${DIR} 
-    COMMAND ${GIT_EXECUTABLE} clone ${REPO} ${DIR}
+    COMMAND ${GIT_EXECUTABLE} clone ${REPO} ${DIR} )
+  add_custom_target( ${TARGET}_CHECKOUT
     COMMAND ${GIT_EXECUTABLE} checkout ${BRANCH}
-    WORKING_DIRECTORY ${DIR} )
+    WORKING_DIRECTORY ${DIR}
+    DEPENDS ${DIR} )
   add_custom_target( ${TARGET} 
     COMMAND ${GIT_EXECUTABLE} checkout ${BRANCH}
     COMMAND ${GIT_EXECUTABLE} pull 
-    DEPENDS ${DIR} WORKING_DIRECTORY ${DIR} )
+    DEPENDS ${TARGET}_CHECKOUT WORKING_DIRECTORY ${DIR} )
 endfunction( git_update )
 
 function( external_package PKGNAME )
@@ -60,5 +64,10 @@ add_subdirectory( libtia )
 set( TOBICORE_ROOT ${CMAKE_BINARY_DIR}/tools4bci/tobicore )
 git_update( tobicore-git git://git.code.sf.net/p/tools4bci/tobicore/code ${TOBICORE_ROOT} msvc10_porting )
 add_subdirectory( tobicore )
+
+set( SIGSERVER_ROOT ${CMAKE_BINARY_DIR}/tools4bci/sigserver )
+message( ${SIGSERVER_ROOT} )
+git_update( sigserver-git git://git.code.sf.net/p/tools4bci/sigserver/code ${SIGSERVER_ROOT} master )
+add_subdirectory( sigserver )
 
 
