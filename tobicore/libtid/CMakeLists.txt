@@ -5,12 +5,12 @@ find_package( Boost REQUIRED COMPONENTS system thread )
 
 set( libtid_INCLUDE_DIRS "${TOBICORE_ROOT}/src/libtid" CACHE PATH "include directories for libTiD" )
 
-set( LIBTID_INCLUDE_DIRS 
-  ${libtid_INCLUDE_DIRS}
-  ${Boost_INCLUDE_DIR}
-)
+#set( LIBTID_INCLUDE_DIRS 
+#  ${libtid_INCLUDE_DIRS}
+#  ${Boost_INCLUDE_DIR}
+#)
 
-include_directories( ${LIBTID_INCLUDE_DIRS} )
+include_directories( ${libtid_INCLUDE_DIRS} ${Boost_INCLUDE_DIR} )
 
 set( HEADERS
 	tid_server.h
@@ -71,10 +71,10 @@ set( BUILD_TID_CLIENT true CACHE BOOL "build TiD Client?" )
 
 if( ${BUILD_TID_SERVER} )
   add_executable( tid-server ${SERVER_SOURCES} )
-  target_link_libraries( tid-server ${LIBTID_LIBRARIES} )
+  target_link_libraries( tid-server ${libtid_LIBRARIES} )
 endif()
 
 if( ${BUILD_TID_CLIENT} )
   add_executable( tid-client ${CLIENT_SOURCES} )
-  target_link_libraries( tid-client ${LIBTID_LIBRARIES} )
+  target_link_libraries( tid-client ${libtid_LIBRARIES} )
 endif()

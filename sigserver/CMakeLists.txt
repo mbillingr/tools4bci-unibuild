@@ -24,7 +24,7 @@ include_directories(
   ${SIGSERVER_ROOT}/include
   ${libtia_INCLUDE_DIRS}
   ${TOBICORE_INCLUDE_DIRS}
-  ${ticpp_INCLUDE_DIRS}
+  ${ticpp_INCLUDE_DIR}
   ${libusb_INCLUDE_DIRS}
   ${libgdf_INCLUDE_DIR}
   ${Boost_INCLUDE_DIRS}

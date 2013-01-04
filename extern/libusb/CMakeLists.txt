@@ -1,6 +1,14 @@
 
-set( BUNDLE_USE_libusb true CACHE BOOL "use the bundled version of the library?" )
-set( BUNDLE_BUILD_libusb false CACHE BOOL "(re)build the bundled library?" )
+# Default settings 
+if( ${UNIX} )
+  set( BUNDLE_USE_libusb false CACHE BOOL "use the bundled version of the library?" )
+elseif( ${WIN32} )
+  set( BUNDLE_USE_libusb true CACHE BOOL "use the bundled version of the library?" )
+else()
+  set( BUNDLE_USE_libusb false CACHE BOOL "use the bundled version of the library?" )
+endif()
+
+# ===================================ff
 
 if( ${BUNDLE_USE_libusb} )
   set( libusb_INCLUDE_DIRS ${T4B_LIBBUNDLE_ROOT}/include CACHE PATH "library include paths" )

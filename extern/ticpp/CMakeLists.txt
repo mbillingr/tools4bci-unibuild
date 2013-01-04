@@ -1,6 +1,6 @@
 
 set( BUNDLE_USE_ticpp true CACHE BOOL "use the bundled version of the library?" )
-set( BUNDLE_BUILD_ticpp false CACHE BOOL "(re)build the bundled library?" )
+set( BUNDLE_BUILD_ticpp true CACHE BOOL "(re)build the bundled library?" )
 
 if( NOT ${BUNDLE_USE_ticpp} )
   message( FATAL_ERROR "Must use bundled ticpp." )

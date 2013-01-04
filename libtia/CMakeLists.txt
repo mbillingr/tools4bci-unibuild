@@ -12,7 +12,7 @@ set( libtia_INCLUDE_DIRS "${LIBTIA_ROOT}/include" CACHE PATH "include directorie
 
 include_directories(
   ${libtia_INCLUDE_DIRS}
-  ${ticpp_INCLUDE_DIRS}
+  ${ticpp_INCLUDE_DIR}
 )
 
 set( HEADERS
