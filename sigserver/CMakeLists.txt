@@ -41,7 +41,7 @@ add_dependencies( signalserver sigserver-git )
 
 target_link_libraries( signalserver GDF ticpp tia ${libtia_LIBRARIES} ${libtid_LIBRARIES} ${Boost_LIBRARIES} )
 
-if( ${SIGSERVER_BUILD_KINECT} AND ${UNIX} )
+if( DEFINED ${SIGSERVER_BUILD_KINECT} AND DEFINED ${UNIX} )
   target_link_libraries( signalserver rt )
 endif()
 
