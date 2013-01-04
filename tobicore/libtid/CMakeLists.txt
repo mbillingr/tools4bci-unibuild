@@ -3,8 +3,10 @@ external_package( SDL )
 
 find_package( Boost REQUIRED COMPONENTS system thread )
 
+set( libtid_INCLUDE_DIRS "${TOBICORE_ROOT}/src/libtid" CACHE PATH "include directories for libTiD" )
+
 set( LIBTID_INCLUDE_DIRS 
-  ${TOBICORE_ROOT}/src/libtid
+  ${libtid_INCLUDE_DIRS}
   ${Boost_INCLUDE_DIR}
 )
 
