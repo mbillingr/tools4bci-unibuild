@@ -39,7 +39,7 @@ add_subdirectory( src )
 add_executable( signalserver ${HEADERS} ${SOURCES} )
 add_dependencies( signalserver sigserver-git )
 
-target_link_libraries( signalserver GDF ticpp tia ${libtia_LIBRARIES} ${libtid_LIBRARIES} ${Boost_LIBRARIES} )
+target_link_libraries( signalserver GDF ticpp tia ${libtia_LIBRARIES} ${libtid_LIBRARIES} ${Boost_LIBRARIES} ${SDL_LIBRARY} )
 
 if( ${SIGSERVER_BUILD_MOUSE} )
   target_link_libraries( signalserver ${libusb_LIBRARIES} ${Xrandr_LIBRARIES} )

@@ -73,10 +73,11 @@ link_directories( ${Boost_LIBRARY_DIRS} )
 
 if( ${BUILD_TID_SERVER} )
   add_executable( tid-server ${SERVER_SOURCES} )
-  target_link_libraries( tid-server ${libtid_LIBRARIES} )
+  target_link_libraries( tid-server ${libtid_LIBRARIES} ${SDL_LIBRARY} )
 endif()
 
 if( ${BUILD_TID_CLIENT} )
   add_executable( tid-client ${CLIENT_SOURCES} )
-  target_link_libraries( tid-client ${libtid_LIBRARIES} )
+  target_link_libraries( tid-client ${libtid_LIBRARIES} ${SDL_LIBRARY} )
 endif()
+
