@@ -11,6 +11,10 @@ set( T4B_EXTERNALS_BINARY ${CMAKE_BINARY_DIR}/extern CACHE PATH "Where to build 
 
 set( BUILD_SHARED_LIBS true CACHE BOOL "Shared libs or static libs..." )
 
+if( ${WIN32} )
+	set( Boost_USE_STATIC_LIBS true CACHE BOOL "" )
+endif()
+
 include_directories( ${CMAKE_SOURCE_DIR} )
 
 function( sysinfo )
@@ -47,6 +51,7 @@ function( sysinfo )
   
   set( T4B_LIBPART ${T4B_LIBPART} CACHE INTERNAL "" )
   message( "Bundle-libraries: ${T4B_LIBPART}" )
+  
 
 endfunction( sysinfo )
 

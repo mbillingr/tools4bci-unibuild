@@ -10,7 +10,7 @@ set( libtid_INCLUDE_DIRS "${TOBICORE_ROOT}/src/libtid" CACHE PATH "include direc
 #  ${Boost_INCLUDE_DIR}
 #)
 
-include_directories( ${libtid_INCLUDE_DIRS} ${Boost_INCLUDE_DIR} )
+include_directories( ${libtid_INCLUDE_DIRS} ${Boost_INCLUDE_DIR} ${SDL_INCLUDE_DIR} )
 
 set( HEADERS
 	tid_server.h
@@ -64,10 +64,12 @@ endforeach( hdr )
 add_library( tid ${FULL_HEADERS} ${FULL_SOURCES} )
 add_dependencies( tid tobicore-git )
 
-set( libtid_LIBRARIES tid tobiid tobicore ${Boost_LIBRARIES} ${SDL_LIBRARY} CACHE INTERNAL "")
+set( libtid_LIBRARIES tid tobiid tobicore ${Boost_LIBRARIES} CACHE INTERNAL "")
 
 set( BUILD_TID_SERVER true CACHE BOOL "build TiD Server?" )
 set( BUILD_TID_CLIENT true CACHE BOOL "build TiD Client?" )
+
+link_directories( ${Boost_LIBRARY_DIRS} )
 
 if( ${BUILD_TID_SERVER} )
   add_executable( tid-server ${SERVER_SOURCES} )
