@@ -2,9 +2,9 @@ project( signalserver )
 
 configure_libtia()
 
-external_package( ticpp )
-external_package( libgdf )
-external_package( libusb )
+#external_package( ticpp )
+#external_package( libgdf )
+#external_package( libusb )
 
 include_directories(
   ${SIGSERVER_ROOT}/include

@@ -4,7 +4,10 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake)
 
 find_package( Git REQUIRED )
 
-set( T4B_LIBBUNDLE_ROOT ${CMAKE_SOURCE_DIR}/extern CACHE PATH "Path to the tools4bci external library bundle" )
+set( T4B_LIBBUNDLE_ROOT ${CMAKE_SOURCE_DIR}/extern_bundle CACHE PATH "Path to the tools4bci external library bundle" )
+
+set( T4B_EXTERNALS_SOURCE ${CMAKE_SOURCE_DIR}/extern CACHE PATH "Path to build files for external libraries" )
+set( T4B_EXTERNALS_BINARY ${CMAKE_BINARY_DIR}/extern CACHE PATH "Where to build external libraries" )
 
 set( BUILD_SHARED_LIBS true CACHE BOOL "Shared libs or static libs..." )
 
@@ -43,31 +46,23 @@ function( git_update TARGET REPO DIR BRANCH )
     DEPENDS ${TARGET}_CHECKOUT WORKING_DIRECTORY ${DIR} )
 endfunction( git_update )
 
-function( external_package PKGNAME )
-  set( USE_BUNDLE_${PKGNAME} true CACHE BOOL "Use bundled ${PKGNAME}" )
-
-  if( ${USE_BUNDLE_${PKGNAME}} )
-    message( "Using bundled ${PKGNAME}" )
-    set( ${PKGNAME}_INCLUDE_DIR "${T4B_LIBBUNDLE_ROOT}/include" CACHE PATH "${PKGNAME} include directory" )
-  else()
-    message( "Attempting to find ${PKGNAME}" )
-    find_package( ${PKGNAME} )
-  endif()
-endfunction( external_package )
 
 sysinfo( )
+
+add_subdirectory( extern )
 
 set( LIBTIA_ROOT ${CMAKE_BINARY_DIR}/tools4bci/libtia )
 git_update( libtia-git git://git.code.sf.net/p/tools4bci/libtia/code ${LIBTIA_ROOT} master )
 add_subdirectory( libtia )
 
-set( TOBICORE_ROOT ${CMAKE_BINARY_DIR}/tools4bci/tobicore )
-git_update( tobicore-git git://git.code.sf.net/p/tools4bci/tobicore/code ${TOBICORE_ROOT} msvc10_porting )
-add_subdirectory( tobicore )
 
-set( SIGSERVER_ROOT ${CMAKE_BINARY_DIR}/tools4bci/sigserver )
-message( ${SIGSERVER_ROOT} )
-git_update( sigserver-git git://git.code.sf.net/p/tools4bci/sigserver/code ${SIGSERVER_ROOT} master )
-add_subdirectory( sigserver )
+#set( TOBICORE_ROOT ${CMAKE_BINARY_DIR}/tools4bci/tobicore )
+#git_update( tobicore-git git://git.code.sf.net/p/tools4bci/tobicore/code ${TOBICORE_ROOT} msvc10_porting )
+#add_subdirectory( tobicore )
+
+#set( SIGSERVER_ROOT ${CMAKE_BINARY_DIR}/tools4bci/sigserver )
+#message( ${SIGSERVER_ROOT} )
+#git_update( sigserver-git git://git.code.sf.net/p/tools4bci/sigserver/code ${SIGSERVER_ROOT} master )
+#add_subdirectory( sigserver )
 
 

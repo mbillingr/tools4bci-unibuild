@@ -6,13 +6,13 @@ endfunction( configure_libtia )
 
 configure_libtia()
 
-external_package( ticpp )
+#external_package( ticpp )
 
 set( libtia_INCLUDE_DIRS "${LIBTIA_ROOT}/include" CACHE PATH "include directories for libTiA" )
 
 include_directories(
   ${libtia_INCLUDE_DIRS}
-  ${ticpp_INCLUDE_DIR}
+  ${ticpp_INCLUDE_DIRS}
 )
 
 set( HEADERS

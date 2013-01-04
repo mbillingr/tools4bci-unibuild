@@ -1,5 +1,5 @@
 
-external_package( SDL )
+#external_package( SDL )
 
 find_package( Boost REQUIRED COMPONENTS system thread )
 
