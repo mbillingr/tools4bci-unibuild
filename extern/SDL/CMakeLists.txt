@@ -1,12 +1,14 @@
 
-set( BUNDLE_USE_SDL true CACHE BOOL "use the bundled version of the library?" )
-set( BUNDLE_BUILD_SDL false CACHE INTERNAL "(re)build the bundled library?" )
-
-if( ${BUNDLE_BUILD_SDL} )
-  message( FATAL_ERROR "Building SDL not yet implemented." )
+# Default settings 
+if( ${UNIX} )
+  set( BUNDLE_USE_SDL false CACHE BOOL "use the bundled version of the library?" )
+elseif( ${WIN32} )
+  set( BUNDLE_USE_SDL true CACHE BOOL "use the bundled version of the library?" )
+else()
+  set( BUNDLE_USE_SDL false CACHE BOOL "use the bundled version of the library?" )
 endif()
 
-message( "Bundle-libraries: ${T4B_LIBPART}" )
+# ===================================ff
 
 if( ${BUNDLE_USE_SDL} )
   set( liblist 
