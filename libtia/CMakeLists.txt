@@ -8,8 +8,10 @@ configure_libtia()
 
 external_package( ticpp )
 
+set( libtia_INCLUDE_DIRS "${LIBTIA_ROOT}/include" CACHE PATH "include directories for libTiA" )
+
 include_directories(
-  ${LIBTIA_ROOT}/include
+  ${libtia_INCLUDE_DIRS}
   ${ticpp_INCLUDE_DIR}
 )
 
