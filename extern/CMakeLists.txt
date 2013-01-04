@@ -1,3 +1,6 @@
+add_subdirectory( comedi )
 add_subdirectory( filterTools )
+add_subdirectory( libgdf )
+add_subdirectory( libusb )
 add_subdirectory( SDL )
 add_subdirectory( ticpp )

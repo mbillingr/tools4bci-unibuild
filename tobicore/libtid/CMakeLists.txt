@@ -64,7 +64,7 @@ endforeach( hdr )
 add_library( tid ${FULL_HEADERS} ${FULL_SOURCES} )
 add_dependencies( tid tobicore-git )
 
-set( LIBTID_LIBRARIES tid tobiid tobicore ${Boost_LIBRARIES} ${SDL_LIBRARY} )
+set( libtid_LIBRARIES tid tobiid tobicore ${Boost_LIBRARIES} ${SDL_LIBRARY} CACHE INTERNAL "")
 
 set( BUILD_TID_SERVER true CACHE BOOL "build TiD Server?" )
 set( BUILD_TID_CLIENT true CACHE BOOL "build TiD Client?" )

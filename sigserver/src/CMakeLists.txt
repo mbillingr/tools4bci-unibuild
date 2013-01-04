@@ -16,7 +16,6 @@ set( HEADERS
 	hardware/eeg_sim_msg_parser.h
 	signalserver/signalserver.h
 	hardware/gBSamp_base.h
-	hardware/kinect.h
 	filewriter/file_writer.h
 	filewriter/file_writer_data_types.h
 	filewriter/file_writer_impl_base.h
@@ -27,18 +26,14 @@ set( HEADERS
 
 if( ${UNIX} )
   set( HEADERS ${HEADERS}
-	hardware/mouse_linux.h
 	hardware/nidaqmx_wrapper.h
-	hardware/gBSamp_unix.h
 #	hardware/keylogger_linux.h
   )
 endif( )
 
 if( ${WIN32} )
   set( HEADERS ${HEADERS}
-	hardware/mouse_win.h
 	hardware/brainampseries.h
-	hardware/gBSamp_win.h
 	hardware/gtec_usbamp_wrapper.h
 	hardware/usbamp.h
 	hardware/dataq_wrapper.h
@@ -67,7 +62,6 @@ set( SOURCES
 	hardware/eeg_sim_msg_parser.cpp
 	signalserver/signalserver.cpp
 	hardware/gBSamp_base.cpp
-	hardware/kinect.cpp
 	filewriter/file_writer.cpp
 	filewriter/file_writer_impl_base.cpp
 	filewriter/gdf_writer_impl.cpp
@@ -75,18 +69,14 @@ set( SOURCES
 #	hardware/event_listener.cpp
 )
 
-if( ${UNIX} )
-  set( SOURCES ${SOURCES}
-	hardware/mouse_linux.cpp
-	hardware/gBSamp_unix.cpp
+#if( ${UNIX} )
+#  set( SOURCES ${SOURCES}	
 #	hardware/keylogger_linux.cpp
-  )
-endif( )
+#  )
+#endif( )
 
 if( ${WIN32} )
   set( SOURCES ${SOURCES}
-	hardware/mouse_win.cpp
-	hardware/gBSamp_win.cpp
 	hardware/brainampseries.cpp
 	hardware/usbamp.cpp
 	hardware/dataq.cpp
@@ -95,6 +85,33 @@ if( ${WIN32} )
 #	hardware/keylogger_win.cpp
   )
 endif( )
+
+if( ${SIGSERVER_BUILD_MOUSE} )
+  if( ${UNIX} )
+    set( HEADERS ${HEADERS} hardware/mouse_linux.h )
+    set( SOURCES ${SOURCES} hardware/mouse_linux.cpp )
+  endif()
+  if( ${WIN32} )
+    set( HEADERS ${HEADERS} hardware/mouse_win.h )
+    set( SOURCES ${SOURCES} hardware/mouse_win.cpp )
+  endif()
+endif()
+
+if( ${SIGSERVER_BUILD_GBSAMP} )
+  if( ${UNIX} )
+    set( HEADERS ${HEADERS} hardware/gBSamp_unix.h )
+    set( SOURCES ${SOURCES} hardware/gBSamp_unix.cpp )
+  endif()
+  if( ${WIN32} )
+    set( HEADERS ${HEADERS} hardware/gBSamp_win.h )
+    set( SOURCES ${SOURCES} hardware/gBSamp_win.cpp )
+  endif()
+endif()
+
+if( ${SIGSERVER_BUILD_KINECT} )
+  set( HEADERS ${HEADERS} hardware/kinect.h )
+  set( SOURCES ${SOURCES} hardware/kinect.cpp )
+endif()
 
 
 # add full path to sources and headers

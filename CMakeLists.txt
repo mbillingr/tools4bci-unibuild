@@ -74,9 +74,8 @@ set( TOBICORE_ROOT ${CMAKE_BINARY_DIR}/tools4bci/tobicore )
 git_update( tobicore-git git://git.code.sf.net/p/tools4bci/tobicore/code ${TOBICORE_ROOT} msvc10_porting )
 add_subdirectory( tobicore )
 
-#set( SIGSERVER_ROOT ${CMAKE_BINARY_DIR}/tools4bci/sigserver )
-#message( ${SIGSERVER_ROOT} )
-#git_update( sigserver-git git://git.code.sf.net/p/tools4bci/sigserver/code ${SIGSERVER_ROOT} master )
-#add_subdirectory( sigserver )
+set( SIGSERVER_ROOT ${CMAKE_BINARY_DIR}/tools4bci/sigserver )
+git_update( sigserver-git git://git.code.sf.net/p/tools4bci/sigserver/code ${SIGSERVER_ROOT} master )
+add_subdirectory( sigserver )
 
 

@@ -140,3 +140,5 @@ endforeach( hdr )
 
 add_library( tia ${FULL_HEADERS} ${FULL_SOURCES} )
 add_dependencies( tia libtia-git )
+
+set( libtia_LIBRARIES tia CACHE INTERNAL "")
