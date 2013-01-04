@@ -1,6 +1,6 @@
 project( tobicore )
 
-set( TOBICORE_INCLUDE_DIRS ${TOBICORE_ROOT}/src )
+set( TOBICORE_INCLUDE_DIRS ${TOBICORE_ROOT}/src CACHE PATH "include directories for all tobicore libraries" )
 
 include_directories( ${TOBICORE_INCLUDE_DIRS} )
 
