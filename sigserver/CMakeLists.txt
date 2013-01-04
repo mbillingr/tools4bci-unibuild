@@ -1,6 +1,6 @@
 project( signalserver )
 
-if( ${HAVE_libusb} )
+if( ${HAVE_libusb} AND ${HAVE_Xrandr} )
   set( SIGSERVER_BUILD_MOUSE true CACHE BOOL "Hardware Device: Mouse" )
 else()
   set( SIGSERVER_BUILD_MOUSE false CACHE BOOL "Hardware Device: Mouse" FORCE)
@@ -41,7 +41,12 @@ add_dependencies( signalserver sigserver-git )
 
 target_link_libraries( signalserver GDF ticpp tia ${libtia_LIBRARIES} ${libtid_LIBRARIES} ${Boost_LIBRARIES} )
 
-if( DEFINED ${SIGSERVER_BUILD_KINECT} AND DEFINED ${UNIX} )
+if( ${SIGSERVER_BUILD_MOUSE} )
+  target_link_libraries( signalserver ${libusb_LIBRARIES} ${Xrandr_LIBRARIES} )
+endif()
+  
+
+if( ${SIGSERVER_BUILD_KINECT} AND DEFINED ${UNIX} )
   target_link_libraries( signalserver rt )
 endif()
 
