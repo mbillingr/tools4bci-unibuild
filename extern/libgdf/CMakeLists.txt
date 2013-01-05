@@ -13,8 +13,8 @@ if( ${BUNDLE_BUILD_libgdf} )
   set( libgdf_LIBRARY ${CMAKE_BINARY_DIR}/extern_bundle/libgdf/build CACHE PATH "library" FORCE )
 
 elseif( ${BUNDLE_USE_libgdf} )
-  set( libgdf_INCLUDE_DIR ${T4B_LIBBUNDLE_ROOT}/include CACHE PATH "library include paths" FORCE )
-  set( libgdf_LIBRARY ${liblist} CACHE PATH "library search paths" FORCE )
+  set( libgdf_INCLUDE_DIR ${T4B_LIBBUNDLE_ROOT}/libgdf/include CACHE PATH "library include paths" FORCE )
+#  set( libgdf_LIBRARY ${liblist} CACHE PATH "library search paths" FORCE )
 
 else()
   message( "TODO: Support system's libGDF" )

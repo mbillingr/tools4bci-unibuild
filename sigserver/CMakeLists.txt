@@ -1,6 +1,6 @@
 project( signalserver )
 
-if( ${HAVE_libusb} AND ${HAVE_Xrandr} )
+if( ${HAVE_libusb} AND ${HAVE_Xrandr} AND ${HAVE_X11} )
   set( SIGSERVER_BUILD_MOUSE true CACHE BOOL "Hardware Device: Mouse" )
 else()
   set( SIGSERVER_BUILD_MOUSE false CACHE BOOL "Hardware Device: Mouse" FORCE)
@@ -27,7 +27,8 @@ include_directories(
   ${ticpp_INCLUDE_DIR}
   ${libusb_INCLUDE_DIRS}
   ${libgdf_INCLUDE_DIR}
-  ${Boost_INCLUDE_DIRS}
+  ${Boost_INCLUDE_DIR}
+  ${SDL_INCLUDE_DIR}
 )
 
 #message( ${libtia_INCLUDE_DIRS} )
@@ -42,12 +43,13 @@ add_dependencies( signalserver sigserver-git )
 target_link_libraries( signalserver GDF ticpp tia ${libtia_LIBRARIES} ${libtid_LIBRARIES} ${Boost_LIBRARIES} ${SDL_LIBRARY} )
 
 if( ${SIGSERVER_BUILD_MOUSE} )
-  target_link_libraries( signalserver ${libusb_LIBRARIES} ${Xrandr_LIBRARIES} )
+  target_link_libraries( signalserver ${libusb_LIBRARIES} ${Xrandr_LIBRARIES} ${X11_LIBRARIES} )
 endif()
-  
 
-if( ${SIGSERVER_BUILD_KINECT} AND DEFINED ${UNIX} )
-  target_link_libraries( signalserver rt )
+if( ${SIGSERVER_BUILD_KINECT} )
+  if( ${UNIX} )
+    target_link_libraries( signalserver rt )
+  endif()
 endif()
 
 

@@ -11,7 +11,7 @@ endif()
 # ===================================ff
 
 if( ${BUNDLE_USE_libusb} )
-  set( libusb_INCLUDE_DIRS ${T4B_LIBBUNDLE_ROOT}/include CACHE PATH "library include paths" )
+  set( libusb_INCLUDE_DIRS ${T4B_LIBBUNDLE_ROOT}/libusb/include CACHE PATH "library include paths" )
   set( HAVE_libusb true CACHE INTERNAL "" )
 
 else()
