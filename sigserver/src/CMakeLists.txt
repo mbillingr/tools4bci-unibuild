@@ -20,6 +20,8 @@ set( HEADERS
 	filewriter/file_writer_data_types.h
 	filewriter/file_writer_impl_base.h
 	filewriter/gdf_writer_impl.h
+	misc/statistics.h
+	misc/databuffer.h
 #	hardware/keylogger_base.h
 #	hardware/event_listener.h
 )
@@ -58,6 +60,7 @@ set( SOURCES
 	filewriter/file_writer.cpp
 	filewriter/file_writer_impl_base.cpp
 	filewriter/gdf_writer_impl.cpp
+	misc/statistics.cpp
 #	hardware/keylogger_base.cpp
 #	hardware/event_listener.cpp
 )

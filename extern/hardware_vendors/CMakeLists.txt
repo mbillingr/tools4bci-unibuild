@@ -10,11 +10,20 @@ if( ${UNIX} )
   set( HAVE_plux false CACHE INTERNAL "" )
 elseif( ${WIN32} )
   set( HAVE_brainproducts true CACHE INTERNAL "" )
+  list( APPEND INC_DIRS ${HWV_ROOT}/brainproducts/include )
+  
   set( HAVE_dataq true CACHE INTERNAL "" )
+  list( APPEND INC_DIRS ${HWV_ROOT}/dataq/include )
+  
   set( HAVE_nirscout true CACHE INTERNAL "" )
-  set( HAVE_usbamp true CACHE INTERNAL "" )
+  list( APPEND INC_DIRS ${HWV_ROOT}/NIRScout/include )
+  
   set( HAVE_plux true CACHE INTERNAL "" )
-  list( APPEND INC_DIRS ${HWV_ROOT} )
+  list( APPEND INC_DIRS ${HWV_ROOT}/plux/include )
+  set( HW_VENDORS_PLUX_LIBS 
+    debug ${HWV_ROOT}/plux/lib/${T4B_LIBPART}/BioPlux_d.lib
+	optimized ${HWV_ROOT}/plux/lib/${T4B_LIBPART}/BioPlux.lib
+	CACHE PATH "link libraries for plux" )
 else()
 endif()
 

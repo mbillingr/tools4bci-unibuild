@@ -36,7 +36,7 @@ else()
   set( SIGSERVER_BUILD_NIRSCOUT false CACHE BOOL "Hardware Device: NIRScout" FORCE )
 endif()
 
-if( ${HAVE_usbamp} )
+if( ${WIN32} )
   set( SIGSERVER_BUILD_USBAMP true CACHE BOOL "Hardware Device: gUSBamp" )
 else()
   set( SIGSERVER_BUILD_USBAMP false CACHE BOOL "Hardware Device: gUSBamp" FORCE )
@@ -87,6 +87,10 @@ target_link_libraries( signalserver GDF ticpp tia ${libtia_LIBRARIES} ${libtid_L
 
 if( ${SIGSERVER_BUILD_MOUSE} )
   target_link_libraries( signalserver ${libusb_LIBRARIES} ${Xrandr_LIBRARIES} ${X11_LIBRARIES} )
+endif()
+
+if( ${SIGSERVER_BUILD_PLUX} )
+  target_link_libraries( signalserver ${HW_VENDORS_PLUX_LIBS} )
 endif()
 
 if( ${SIGSERVER_BUILD_KINECT} )
