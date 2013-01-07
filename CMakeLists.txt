@@ -70,12 +70,13 @@ function( git_update TARGET REPO DIR BRANCH )
     OUTPUT ${DIR} 
     COMMAND ${GIT_EXECUTABLE} clone ${REPO} ${DIR} )
   add_custom_target( ${TARGET}_CHECKOUT
+    COMMAND ${GIT_EXECUTABLE} pull 
     COMMAND ${GIT_EXECUTABLE} checkout ${BRANCH}
     WORKING_DIRECTORY ${DIR}
     DEPENDS ${DIR} )
   add_custom_target( ${TARGET} 
-    COMMAND ${GIT_EXECUTABLE} checkout ${BRANCH}
     COMMAND ${GIT_EXECUTABLE} pull 
+    COMMAND ${GIT_EXECUTABLE} checkout ${BRANCH}
     DEPENDS ${TARGET}_CHECKOUT WORKING_DIRECTORY ${DIR} )
 endfunction( git_update )
 
@@ -99,7 +100,7 @@ git_update( tobicore-git git://git.code.sf.net/p/tools4bci/tobicore/code ${TOBIC
 add_subdirectory( tobicore )
 
 set( SIGSERVER_ROOT ${CMAKE_BINARY_DIR}/tools4bci/sigserver )
-git_update( sigserver-git git://git.code.sf.net/p/tools4bci/sigserver/code ${SIGSERVER_ROOT} master )
+git_update( sigserver-git git://git.code.sf.net/p/tools4bci/sigserver/code ${SIGSERVER_ROOT} unibuild )
 add_subdirectory( sigserver )
   
 foreach( item IN LISTS T4B_BUILDLIST )
