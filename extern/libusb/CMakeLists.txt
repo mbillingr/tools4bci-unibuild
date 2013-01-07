@@ -12,6 +12,16 @@ endif()
 
 if( ${BUNDLE_USE_libusb} )
   set( libusb_INCLUDE_DIRS ${T4B_LIBBUNDLE_ROOT}/libusb/include CACHE PATH "library include paths" )
+  if( ${UNIX} )
+    set( libusb_LIBRARIES "${T4B_LIBBUNDLE_ROOT}/libusb/lib/${T4B_LIBPART}/libusb0.a" CACHE FILEPATH "" )
+  elseif( ${WIN32} )
+    set( libusb_LIBRARIES 
+	  debug "${T4B_LIBBUNDLE_ROOT}/libusb/lib/${T4B_LIBPART}/debug/libusb0.lib" 
+	  optimized "${T4B_LIBBUNDLE_ROOT}/libusb/lib/${T4B_LIBPART}/release/libusb0.lib" 
+	  CACHE FILEPATH "" )
+  else()
+    message( FATAL_ERROR "sorry, libusb is not bundled for your system." )
+  endif()
   set( HAVE_libusb true CACHE INTERNAL "" )
 
 else()
