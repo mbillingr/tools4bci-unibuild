@@ -6,7 +6,7 @@ endfunction( configure_libtia )
 
 configure_libtia()
 
-#external_package( ticpp )
+find_package( Boost REQUIRED COMPONENTS date_time )
 
 set( libtia_INCLUDE_DIRS "${LIBTIA_ROOT}/include" CACHE PATH "include directories for libTiA" )
 
@@ -15,6 +15,7 @@ include_directories(
   ${ticpp_INCLUDE_DIR}
   ${rapidxml_INCLUDE_DIRS}
   ${filterTools_INCLUDE_DIR}
+  ${Boost_INCLUDE_DIR}
 )
 
 set( HEADERS
@@ -140,8 +141,14 @@ foreach( hdr ${HEADERS} )
   set( FULL_HEADERS ${FULL_HEADERS} "${LIBTIA_ROOT}/include/${hdr}" )
 endforeach( hdr )
 
+link_directories( ${Boost_LIBRARY_DIRS} )
+
 add_library( tia ${FULL_HEADERS} ${FULL_SOURCES} )
-add_dependencies( tia libtia-git )  
+add_dependencies( tia libtia-git )
+
+if( ${WIN32} )
+  target_link_libraries( tia ticpp ${Boost_LIBRARIES} )
+endif()
   
 list( APPEND T4B_BUILDLIST "libtia" )
 set( T4B_BUILDLIST ${T4B_BUILDLIST} PARENT_SCOPE )
