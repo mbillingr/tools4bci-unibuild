@@ -7,7 +7,10 @@ include_directories( ${TOBICORE_INCLUDE_DIRS} )
 add_subdirectory( tobicore )
 add_subdirectory( tobiic )
 add_subdirectory( tobiid )
-add_subdirectory( tobiplatform )
 add_subdirectory( libtid )
+
+if( ${UNIX} )
+  add_subdirectory( tobiplatform )
+endif()
 
 set( T4B_BUILDLIST ${T4B_BUILDLIST} PARENT_SCOPE )
