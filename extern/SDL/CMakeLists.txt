@@ -15,10 +15,10 @@ if( ${BUNDLE_USE_SDL} )
   if( ${UNIX} )
     set( liblist
       "${T4B_LIBBUNDLE_ROOT}/SDL/lib/${T4B_LIBPART}/libSDL.so"
-      "${T4B_LIBBUNDLE_ROOT}/SDL/lib/${T4B_LIBPART}/libSDLmain.a" 
-      "-lpthread"	  
+      "${T4B_LIBBUNDLE_ROOT}/SDL/lib/${T4B_LIBPART}/libSDLmain.a"       	  
     )
-    set( SDL_LIBRARY ${liblist} CACHE PATH "library search paths" FORCE )
+    set( SDL_LIBRARY ${liblist} "-lpthread" CACHE PATH "library search paths" FORCE )
+	install( FILES ${SDL_LIBRARY_DLL} DESTINATION lib )
   endif()
   
   if( ${WIN32} )
@@ -31,6 +31,8 @@ if( ${BUNDLE_USE_SDL} )
       optimized "${T4B_LIBBUNDLE_ROOT}/SDL/lib/${T4B_LIBPART}/Release/SDLmain.lib" 
     )	
     set( SDL_LIBRARY ${liblist_dbg} ${liblist_rel} CACHE PATH "library search paths" FORCE )
+    set( SDL_LIBRARY_DLL ${T4B_LIBBUNDLE_ROOT}/SDL/lib/${T4B_LIBPART}/Release/SDL.dll CACHE PATH "SDL dll" FORCE )
+	install( FILES ${SDL_LIBRARY_DLL} DESTINATION bin )
   endif()
   
   set( SDL_INCLUDE_DIR ${T4B_LIBBUNDLE_ROOT}/SDL/include CACHE PATH "library include paths" FORCE )
