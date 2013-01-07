@@ -1,15 +1,33 @@
 project( signalserver )
 
+if( ${WIN32} )
+  set( WIN true )
+else()
+  set( WIN false )
+endif()
+
 if( ${HAVE_libusb} AND ${HAVE_Xrandr} AND ${HAVE_X11} )
   set( SIGSERVER_BUILD_MOUSE true CACHE BOOL "Hardware Device: Mouse" )
 else()
-  set( SIGSERVER_BUILD_MOUSE false CACHE BOOL "Hardware Device: Mouse" FORCE)
+  set( SIGSERVER_BUILD_MOUSE false CACHE BOOL "Hardware Device: Mouse" FORCE )
 endif()
 
-if( ${HAVE_libcomedi} )
+if( "${HAVE_libcomedi}" OR "${WIN}" )
   set( SIGSERVER_BUILD_GBSAMP true CACHE BOOL "Hardware Device: gBSamp" )
 else()
-  set( SIGSERVER_BUILD_GBSAMP false CACHE BOOL "Hardware Device: gBSamp" FORCE)
+  set( SIGSERVER_BUILD_GBSAMP false CACHE BOOL "Hardware Device: gBSamp" FORCE )
+endif()
+
+if( ${HAVE_brainproducts} )
+  set( SIGSERVER_BUILD_BRAINPRODUCTS true CACHE BOOL "Hardware Device: gBSamp" )
+else()
+  set( SIGSERVER_BUILD_BRAINPRODUCTS false CACHE BOOL "Hardware Device: gBSamp" FORCE )
+endif()
+
+if( ${HAVE_dataq} )
+  set( SIGSERVER_BUILD_DATAQ true CACHE BOOL "Hardware Device: gBSamp" )
+else()
+  set( SIGSERVER_BUILD_DATAQ false CACHE BOOL "Hardware Device: gBSamp" FORCE )
 endif()
 
 set( SIGSERVER_BUILD_KINECT true CACHE BOOL "Hardware Device: Kinect" FORCE)

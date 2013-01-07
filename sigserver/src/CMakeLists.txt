@@ -33,11 +33,9 @@ endif( )
 
 if( ${WIN32} )
   set( HEADERS ${HEADERS}
-	hardware/brainampseries.h
 	hardware/gtec_usbamp_wrapper.h
 	hardware/usbamp.h
 	hardware/dataq_wrapper.h
-	hardware/dataq.h
 	hardware/nirscout.h
 	hardware/plux.h
 #	hardware/keylogger_win.h
@@ -77,9 +75,7 @@ set( SOURCES
 
 if( ${WIN32} )
   set( SOURCES ${SOURCES}
-	hardware/brainampseries.cpp
 	hardware/usbamp.cpp
-	hardware/dataq.cpp
 	hardware/nirscout.cpp
 	hardware/plux.cpp
 #	hardware/keylogger_win.cpp
@@ -105,6 +101,26 @@ if( ${SIGSERVER_BUILD_GBSAMP} )
   if( ${WIN32} )
     set( HEADERS ${HEADERS} hardware/gBSamp_win.h )
     set( SOURCES ${SOURCES} hardware/gBSamp_win.cpp )
+  endif()
+endif()
+
+if( ${SIGSERVER_BUILD_BRAINPRODUCTS} )
+  if( ${UNIX} )
+    message( "WARNING: Brainproducts brainampseries not supported under Unix." )
+  endif()
+  if( ${WIN32} )
+    set( HEADERS ${HEADERS} hardware/brainampseries.h )
+    set( SOURCES ${SOURCES} hardware/brainampseries.cpp )
+  endif()
+endif()
+
+if( ${SIGSERVER_BUILD_DATAQ} )
+  if( ${UNIX} )
+    message( "WARNING: Brainproducts brainampseries not supported under Unix." )
+  endif()
+  if( ${WIN32} )
+    set( HEADERS ${HEADERS} hardware/dataq.h )
+    set( SOURCES ${SOURCES} hardware/dataq.cpp )
   endif()
 endif()
 
