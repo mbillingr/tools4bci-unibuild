@@ -8,7 +8,7 @@ set( ticpp_INCLUDE_DIR ${ticpp_ROOT}/include CACHE PATH "library include paths" 
 if( ${BUNDLE_BUILD_ticpp} )
   add_definitions( -DTIXML_USE_TICPP )
   include_directories( ${ticpp_INCLUDE_DIR}/ticpp )
-  add_library( ticpp
+  add_library( ticpp STATIC
     ${ticpp_ROOT}/src/ticpp.cpp
     ${ticpp_ROOT}/src/tinystr.cpp
     ${ticpp_ROOT}/src/tinyxml.cpp
