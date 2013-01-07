@@ -28,3 +28,10 @@ add_dependencies( tobiid tobicore-git )
 
 list( APPEND T4B_BUILDLIST "tobiid" )
 set( T4B_BUILDLIST ${T4B_BUILDLIST} PARENT_SCOPE )
+
+install( FILES ${FULL_HEADERS} DESTINATION include/tobiid )
+install( TARGETS tobiid
+	RUNTIME DESTINATION bin
+	LIBRARY DESTINATION lib
+	ARCHIVE DESTINATION lib
+)

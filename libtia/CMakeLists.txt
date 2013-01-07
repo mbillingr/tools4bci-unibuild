@@ -18,14 +18,21 @@ include_directories(
   ${Boost_INCLUDE_DIR}
 )
 
-set( HEADERS
+set( TIA_HEADERS
     tia/tia_server.h
     tia/defines.h
     tia/constants.h
+    tia/ss_meta_info.h
+    tia/tia_client.h
+    tia/ssconfig.h
+    tia/data_packet_interface.h
+    tia/custom_signal_info.h
+)
+
+set( PRIVATE_HEADERS
     tia-private/config/control_message_decoder.h
     tia-private/config/control_message_encoder.h
     tia-private/config/control_messages.h
-    tia/ss_meta_info.h
     tia-private/datapacket/raw_mem.h
     tia-private/datapacket/data_packet_selector.h
     tia-private/network/control_connection.h
@@ -33,10 +40,8 @@ set( HEADERS
     tia-private/network/tcp_data_server.h
     tia-private/network/tcp_server.h
     tia-private/network/udp_data_server.h
-    tia/tia_client.h
     tia-private/client/tia_client_impl.h
     tia-private/client/tia_client_impl_base.h
-    tia/ssconfig.h
     tia-private/datapacket/raw_mem3.h
     tia-private/clock.h
     tia-private/newtia/network/socket.h
@@ -79,7 +84,6 @@ set( HEADERS
     tia-private/newtia/server_impl/control_connection_server_2_impl.h
     tia-private/newtia/server_impl/control_connection_2.h
     tia-private/datapacket/data_packet_3_impl.h
-    tia/data_packet_interface.h
     tia-private/datapacket/data_packet_impl.h
     tia-private/newtia/tia_custom_signal_info_parse_and_build_functions.h
     tia-private/newtia/tia_parse_and_build_helper_functions.h
@@ -88,7 +92,6 @@ set( HEADERS
     tia-private/newtia/commands/set_custom_signalinfo_control_command.h
     tia-private/newtia/filter_impl/tia_downsampling_filterdecorator.h
     tia-private/newtia/filter_impl/downsampling_filterparam.h
-    tia/custom_signal_info.h
 )
 
 
@@ -137,13 +140,17 @@ foreach( src ${SOURCES} )
   set( FULL_SOURCES ${FULL_SOURCES} "${LIBTIA_ROOT}/${src}" )
 endforeach( src )
 
-foreach( hdr ${HEADERS} )
-  set( FULL_HEADERS ${FULL_HEADERS} "${LIBTIA_ROOT}/include/${hdr}" )
+foreach( hdr ${TIA_HEADERS} )
+  set( FULL_TIA_HEADERS ${FULL_TIA_HEADERS} "${LIBTIA_ROOT}/include/${hdr}" )
+endforeach( hdr )
+
+foreach( hdr ${PRIVATE_HEADERS} )
+  set( FULL_PRIVATE_HEADERS ${FULL_PRIVATE_HEADERS} "${LIBTIA_ROOT}/include/${hdr}" )
 endforeach( hdr )
 
 link_directories( ${Boost_LIBRARY_DIRS} )
 
-add_library( tia ${FULL_HEADERS} ${FULL_SOURCES} )
+add_library( tia ${FULL_TIA_HEADERS} ${FULL_PRIVATE_HEADERS} ${FULL_SOURCES} )
 add_dependencies( tia libtia-git )
 
 if( ${WIN32} )
@@ -156,3 +163,10 @@ set( T4B_BUILDLIST ${T4B_BUILDLIST} PARENT_SCOPE )
 #target_link_libraries( tia ticpp )
 
 set( libtia_LIBRARIES tia CACHE INTERNAL "")
+
+install( FILES ${FULL_TIA_HEADERS} DESTINATION include/tia )
+install( TARGETS tia
+	RUNTIME DESTINATION bin
+	LIBRARY DESTINATION lib
+	ARCHIVE DESTINATION lib
+)

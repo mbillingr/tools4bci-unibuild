@@ -36,3 +36,10 @@ add_dependencies( tobiic tobicore-git )
 
 list( APPEND T4B_BUILDLIST "tobiic" )
 set( T4B_BUILDLIST ${T4B_BUILDLIST} PARENT_SCOPE )
+
+install( FILES ${FULL_HEADERS} DESTINATION include/tobiic )
+install( TARGETS tobiic
+	RUNTIME DESTINATION bin
+	LIBRARY DESTINATION lib
+	ARCHIVE DESTINATION lib
+)

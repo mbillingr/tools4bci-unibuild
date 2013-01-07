@@ -34,3 +34,10 @@ add_dependencies( tobicore tobicore-git )
 
 list( APPEND T4B_BUILDLIST "tobicore" )
 set( T4B_BUILDLIST ${T4B_BUILDLIST} PARENT_SCOPE )
+
+install( FILES ${FULL_HEADERS} DESTINATION include/tobicore )
+install( TARGETS tobicore
+	RUNTIME DESTINATION bin
+	LIBRARY DESTINATION lib
+	ARCHIVE DESTINATION lib
+)

@@ -99,4 +99,9 @@ if( ${SIGSERVER_BUILD_KINECT} )
   endif()
 endif()
 
+install( TARGETS signalserver
+	RUNTIME DESTINATION bin
+	LIBRARY DESTINATION lib
+	ARCHIVE DESTINATION lib
+)
 
