@@ -9,7 +9,11 @@ set( T4B_LIBBUNDLE_ROOT ${CMAKE_SOURCE_DIR}/extern_bundle CACHE PATH "Path to th
 set( T4B_EXTERNALS_SOURCE ${CMAKE_SOURCE_DIR}/extern CACHE PATH "Path to build files for external libraries" )
 set( T4B_EXTERNALS_BINARY ${CMAKE_BINARY_DIR}/extern CACHE PATH "Where to build external libraries" )
 
-set( BUILD_SHARED_LIBS true CACHE BOOL "Shared libs or static libs..." )
+if( ${UNIX} )
+  set( BUILD_SHARED_LIBS true CACHE BOOL "Shared libs or static libs..." )
+else()
+  set( BUILD_SHARED_LIBS false CACHE BOOL "Shared libs or static libs..." )
+endif()
 
 if( ${WIN32} )
 	set( Boost_USE_STATIC_LIBS true CACHE BOOL "" )
