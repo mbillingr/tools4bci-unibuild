@@ -33,11 +33,6 @@ endif( )
 
 if( ${WIN32} )
   set( HEADERS ${HEADERS}
-	hardware/gtec_usbamp_wrapper.h
-	hardware/usbamp.h
-	hardware/dataq_wrapper.h
-	hardware/nirscout.h
-	hardware/plux.h
 #	hardware/keylogger_win.h
   )
 endif( )
@@ -75,9 +70,6 @@ set( SOURCES
 
 if( ${WIN32} )
   set( SOURCES ${SOURCES}
-	hardware/usbamp.cpp
-	hardware/nirscout.cpp
-	hardware/plux.cpp
 #	hardware/keylogger_win.cpp
   )
 endif( )
@@ -114,13 +106,43 @@ if( ${SIGSERVER_BUILD_BRAINPRODUCTS} )
   endif()
 endif()
 
+if( ${SIGSERVER_BUILD_NIRSCOUT} )
+  if( ${UNIX} )
+    message( "WARNING: NIRScout not supported under Unix." )
+  endif()
+  if( ${WIN32} )
+    set( HEADERS ${HEADERS} hardware/nirscout.h )
+    set( SOURCES ${SOURCES} hardware/nirscout.cpp )
+  endif()
+endif()
+
 if( ${SIGSERVER_BUILD_DATAQ} )
   if( ${UNIX} )
     message( "WARNING: Brainproducts brainampseries not supported under Unix." )
   endif()
   if( ${WIN32} )
-    set( HEADERS ${HEADERS} hardware/dataq.h )
+    set( HEADERS ${HEADERS} hardware/dataq.h hardware/dataq_wrapper.h )
     set( SOURCES ${SOURCES} hardware/dataq.cpp )
+  endif()
+endif()
+
+if( ${SIGSERVER_BUILD_USBAMP} )
+  if( ${UNIX} )
+    message( "WARNING: gTec USBamp not supported under Unix." )
+  endif()
+  if( ${WIN32} )
+    set( HEADERS ${HEADERS} hardware/usbamp.h hardware/gtec_usbamp_wrapper.h )
+    set( SOURCES ${SOURCES} hardware/usbamp.cpp )
+  endif()
+endif()
+
+if( ${SIGSERVER_BUILD_PLUX} )
+  if( ${UNIX} )
+    message( "WARNING: BioPlux not supported under Unix." )
+  endif()
+  if( ${WIN32} )
+    set( HEADERS ${HEADERS} hardware/plux.h )
+    set( SOURCES ${SOURCES} hardware/plux.cpp )
   endif()
 endif()
 
