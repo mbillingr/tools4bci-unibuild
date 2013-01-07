@@ -27,11 +27,13 @@ include_directories(
   ${ticpp_INCLUDE_DIR}
   ${libusb_INCLUDE_DIRS}
   ${libgdf_INCLUDE_DIR}
+  ${filterTools_INCLUDE_DIR}
   ${Boost_INCLUDE_DIR}
   ${SDL_INCLUDE_DIR}
+  ${HW_VENDORS_INCLUDE_DIRS}
 )
 
-#message( ${libtia_INCLUDE_DIRS} )
+#message( "************** ${HW_VENDORS_INCLUDE_DIRS}" )
 
 set( CONFIG_TIMING_TEST true CACHE BOOL "Build SigServer with timing tests (LptTools)" )
 

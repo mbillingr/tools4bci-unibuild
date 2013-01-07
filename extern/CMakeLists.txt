@@ -7,3 +7,5 @@ add_subdirectory( SDL )
 add_subdirectory( ticpp )
 add_subdirectory( X11 )
 add_subdirectory( xrandr )
+
+add_subdirectory( hardware_vendors )
