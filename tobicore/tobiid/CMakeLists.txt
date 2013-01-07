@@ -25,3 +25,6 @@ endforeach( hdr )
 
 add_library( tobiid ${FULL_HEADERS} ${FULL_SOURCES} )
 add_dependencies( tobiid tobicore-git )
+
+list( APPEND T4B_BUILDLIST "tobiid" )
+set( T4B_BUILDLIST ${T4B_BUILDLIST} PARENT_SCOPE )

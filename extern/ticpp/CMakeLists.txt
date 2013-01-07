@@ -14,9 +14,16 @@ if( ${BUNDLE_BUILD_ticpp} )
     ${ticpp_ROOT}/src/tinyxml.cpp
     ${ticpp_ROOT}/src/tinyxmlerror.cpp
     ${ticpp_ROOT}/src/tinyxmlparser.cpp
+    ${ticpp_INCLUDE_DIR}/ticpp/ticpp.h
+    ${ticpp_INCLUDE_DIR}/ticpp/ticpprc.h
+    ${ticpp_INCLUDE_DIR}/ticpp/tinystr.h
+    ${ticpp_INCLUDE_DIR}/ticpp/tinyxml.h
   )
 
   get_target_property( loc ticpp LOCATION )
-  set( ticpp_LIBRARIES ${loc} CACHE INTERNAL "" )
+  set( ticpp_LIBRARIES ${loc} CACHE INTERNAL "" )  
+    
+  list( APPEND T4B_BUILDLIST "ticpp" )
+  set( T4B_BUILDLIST ${T4B_BUILDLIST} PARENT_SCOPE )
 endif()
 

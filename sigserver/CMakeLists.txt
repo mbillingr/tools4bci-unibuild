@@ -36,6 +36,9 @@ include_directories(
 set( CONFIG_TIMING_TEST true CACHE BOOL "Build SigServer with timing tests (LptTools)" )
 
 add_subdirectory( src )
+  
+list( APPEND T4B_BUILDLIST "Signalserver" )
+set( T4B_BUILDLIST ${T4B_BUILDLIST} PARENT_SCOPE )
 
 add_executable( signalserver ${HEADERS} ${SOURCES} )
 add_dependencies( signalserver sigserver-git )

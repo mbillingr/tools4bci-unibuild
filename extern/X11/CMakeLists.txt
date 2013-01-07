@@ -2,7 +2,7 @@
   if( ${UNIX} )
     find_package( PkgConfig )
     pkg_search_module( X11_tmp x11 )
-    if( ${libusb_tmp_FOUND} )
+    if( ${X11_tmp_FOUND} )
       message( "Found Xrandr version ${X11_tmp_VERSION}." )
       set( X11_LIBRARIES ${X11_tmp_LIBRARIES} CACHE STRING "" )
       set( X11_INCLUDE_DIRS ${X11_tmp_INCLUDE_DIRS} CACHE STRING "" )

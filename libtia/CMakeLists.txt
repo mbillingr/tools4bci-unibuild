@@ -141,7 +141,10 @@ foreach( hdr ${HEADERS} )
 endforeach( hdr )
 
 add_library( tia ${FULL_HEADERS} ${FULL_SOURCES} )
-add_dependencies( tia libtia-git )
+add_dependencies( tia libtia-git )  
+  
+list( APPEND T4B_BUILDLIST "libtia" )
+set( T4B_BUILDLIST ${T4B_BUILDLIST} PARENT_SCOPE )
 
 #target_link_libraries( tia ticpp )
 

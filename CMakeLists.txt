@@ -78,6 +78,12 @@ endfunction( git_update )
 
 sysinfo( )
 
+if( ${BUILD_SHARED_LIBS} )
+  list( APPEND T4B_BUILDLIST "shared libraries..." )
+else()
+  list( APPEND T4B_BUILDLIST "static libraries..." )
+endif()
+
 add_subdirectory( extern )
 
 set( LIBTIA_ROOT ${CMAKE_BINARY_DIR}/tools4bci/libtia )
@@ -91,5 +97,8 @@ add_subdirectory( tobicore )
 set( SIGSERVER_ROOT ${CMAKE_BINARY_DIR}/tools4bci/sigserver )
 git_update( sigserver-git git://git.code.sf.net/p/tools4bci/sigserver/code ${SIGSERVER_ROOT} master )
 add_subdirectory( sigserver )
-
+  
+foreach( item IN LISTS T4B_BUILDLIST )
+  message( "Building ${item}" )
+endforeach()
 

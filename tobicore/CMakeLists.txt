@@ -9,3 +9,5 @@ add_subdirectory( tobiic )
 add_subdirectory( tobiid )
 add_subdirectory( tobiplatform )
 add_subdirectory( libtid )
+
+set( T4B_BUILDLIST ${T4B_BUILDLIST} PARENT_SCOPE )

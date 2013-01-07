@@ -28,5 +28,8 @@ if( ${BUNDLE_BUILD_filterTools} )
 
   get_target_property( loc filterTools LOCATION )
   set( filterTools_LIBRARIES ${loc} CACHE INTERNAL "" )
+  
+  list( APPEND T4B_BUILDLIST "filterTools" )
+  set( T4B_BUILDLIST ${T4B_BUILDLIST} PARENT_SCOPE )
 endif()
 

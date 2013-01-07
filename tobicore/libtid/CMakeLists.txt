@@ -61,6 +61,8 @@ foreach( hdr ${HEADERS} )
   set( FULL_HEADERS ${FULL_HEADERS} "${TOBICORE_ROOT}/src/libtid/${hdr}" )
 endforeach( hdr )
 
+list( APPEND T4B_BUILDLIST "libtid" )
+
 add_library( tid ${FULL_HEADERS} ${FULL_SOURCES} )
 add_dependencies( tid tobicore-git )
 
@@ -74,10 +76,14 @@ link_directories( ${Boost_LIBRARY_DIRS} )
 if( ${BUILD_TID_SERVER} )
   add_executable( tid-server ${SERVER_SOURCES} )
   target_link_libraries( tid-server ${libtid_LIBRARIES} ${SDL_LIBRARY} )
+  list( APPEND T4B_BUILDLIST "TiD Server" )
 endif()
 
 if( ${BUILD_TID_CLIENT} )
   add_executable( tid-client ${CLIENT_SOURCES} )
   target_link_libraries( tid-client ${libtid_LIBRARIES} ${SDL_LIBRARY} )
+  list( APPEND T4B_BUILDLIST "TiD Client" )
 endif()
+
+set( T4B_BUILDLIST ${T4B_BUILDLIST} PARENT_SCOPE )
 

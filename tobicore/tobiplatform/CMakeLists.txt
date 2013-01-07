@@ -28,3 +28,6 @@ endforeach( hdr )
 
 add_library( tobiplatform ${FULL_HEADERS} ${FULL_SOURCES} )
 add_dependencies( tobiplatform tobicore-git )
+
+list( APPEND T4B_BUILDLIST "tobiplatform" )
+set( T4B_BUILDLIST ${T4B_BUILDLIST} PARENT_SCOPE )
