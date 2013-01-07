@@ -48,7 +48,7 @@ else()
   set( SIGSERVER_BUILD_PLUX false CACHE BOOL "Hardware Device: Plux" FORCE )
 endif()
 
-set( SIGSERVER_BUILD_KINECT true CACHE BOOL "Hardware Device: Kinect" FORCE)
+set( SIGSERVER_BUILD_KINECT true CACHE BOOL "Hardware Device: Kinect" )
 
 # ============================
 
@@ -77,6 +77,8 @@ add_subdirectory( src )
   
 list( APPEND T4B_BUILDLIST "Signalserver" )
 set( T4B_BUILDLIST ${T4B_BUILDLIST} PARENT_SCOPE )
+
+link_directories( ${Boost_LIBRARY_DIRS} )
 
 add_executable( signalserver ${HEADERS} ${SOURCES} )
 add_dependencies( signalserver sigserver-git )
