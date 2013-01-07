@@ -126,6 +126,10 @@ add_subdirectory( tobicore )
 set( SIGSERVER_ROOT ${CMAKE_BINARY_DIR}/tools4bci/sigserver )
 git_update( sigserver-git git://git.code.sf.net/p/tools4bci/sigserver/code ${SIGSERVER_ROOT} unibuild )
 add_subdirectory( sigserver )
+
+set( TIASCOPE_ROOT ${CMAKE_BINARY_DIR}/tools4bci/tiascope )
+git_update( tiascope-git git://git.code.sf.net/p/tools4bci/tiascope/code ${TIASCOPE_ROOT} master )
+add_subdirectory( tiascope )
   
 foreach( item IN LISTS T4B_BUILDLIST )
   message( "Building ${item}" )

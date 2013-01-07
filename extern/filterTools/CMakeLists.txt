@@ -4,14 +4,15 @@ set( BUNDLE_BUILD_filterTools true CACHE BOOL "(re)build the bundled library?" )
 
 set( filterTools_ROOT ${T4B_LIBBUNDLE_ROOT}/filterTools )
 
-set( filterTools_INCLUDE_DIR ${filterTools_ROOT}/include CACHE PATH "library include paths" )
+set( filterTools_INCLUDE_DIR ${spuc_INCLUDE_DIRS} ${filterTools_ROOT}/include CACHE PATH "library include paths" )
 
 if( ${BUNDLE_BUILD_filterTools} )
   add_definitions( -DFILTERTOOLS_LIBRARY )
 
   include_directories( 
     ${filterTools_INCLUDE_DIR}/filterTools 
-    ${filterTools_INCLUDE_DIR}/filterTools/spuc/generic
+    ${spuc_INCLUDE_DIRS}
+    ${spuc_INCLUDE_DIRS}/spuc/generic
   )
 
   add_library( filterTools
