@@ -4,7 +4,7 @@ project( TiAscope )
 
 configure_libtia()
 
-#find_package( Boost REQUIRED COMPONENTS filesystem program_options )
+find_package( Boost REQUIRED COMPONENTS system thread )
 
 find_package( Qt4 REQUIRED )
 set( QT_USE_QTNETWORK true )
@@ -33,10 +33,12 @@ set( HEADERS
   ${TIASCOPE_ROOT}/src/config_widget/view_settings_dock_widget.h
   ${TIASCOPE_ROOT}/src/config_widget/application_monitor_dock_widget.h
   ${TIASCOPE_ROOT}/src/config_widget/filter_dockwidget.h
-  ${TIASCOPE_ROOT}/src/config_widget/signal_info_utils.h
+  ${TIASCOPE_ROOT}/src/config_widget/signal_properties_dock_widget.h
+  ${TIASCOPE_ROOT}/src/config_widget/signal_presentation_dock_widget.h
 
   ${TIASCOPE_ROOT}/src/connection_widget/connect_dialog.h
   ${TIASCOPE_ROOT}/src/connection_widget/welcome_widget.h
+  ${TIASCOPE_ROOT}/src/connection_widget/customize_signalinfo_dialog.h
 
   ${TIASCOPE_ROOT}/src/data_collector/reader_thread.h
   ${TIASCOPE_ROOT}/src/data_collector/fourier_transform_thread.h
@@ -68,8 +70,8 @@ set( HEADERS
 
 set( SOURCES
   ${TIASCOPE_ROOT}/src/main.cpp
-
   ${TIASCOPE_ROOT}/src/main_window.cpp
+  
   ${TIASCOPE_ROOT}/src/base/data_buffer.cpp
   ${TIASCOPE_ROOT}/src/base/signal_view_settings.cpp
   ${TIASCOPE_ROOT}/src/base/FFTReal.cpp
@@ -83,9 +85,12 @@ set( SOURCES
   ${TIASCOPE_ROOT}/src/config_widget/application_monitor_dock_widget.cpp
   ${TIASCOPE_ROOT}/src/config_widget/filter_dockwidget.cpp
   ${TIASCOPE_ROOT}/src/config_widget/signal_info_utils.cpp
+  ${TIASCOPE_ROOT}/src/config_widget/signal_properties_dock_widget.cpp
+  ${TIASCOPE_ROOT}/src/config_widget/signal_presentation_dock_widget.cpp
 
   ${TIASCOPE_ROOT}/src/connection_widget/connect_dialog.cpp
   ${TIASCOPE_ROOT}/src/connection_widget/welcome_widget.cpp
+  ${TIASCOPE_ROOT}/src/connection_widget/customize_signalinfo_dialog.cpp
 
   ${TIASCOPE_ROOT}/src/data_collector/reader_thread.cpp
   ${TIASCOPE_ROOT}/src/data_collector/fourier_transform_thread.cpp
@@ -119,10 +124,13 @@ set( FORMS
   ${TIASCOPE_ROOT}/src/config_widget/view_settings_dock_widget.ui
   ${TIASCOPE_ROOT}/src/config_widget/application_monitor_dock_widget.ui
   ${TIASCOPE_ROOT}/src/config_widget/filter_dockwidget.ui
+  ${TIASCOPE_ROOT}/src/config_widget/signal_properties_dock_widget.ui
+  ${TIASCOPE_ROOT}/src/config_widget/signal_presentation_dock_widget.ui
 
   ${TIASCOPE_ROOT}/src/connection_widget/connect_dialog.ui
   ${TIASCOPE_ROOT}/src/connection_widget/connect_wizard.ui
   ${TIASCOPE_ROOT}/src/connection_widget/welcome_widget.ui
+  ${TIASCOPE_ROOT}/src/connection_widget/customize_signalinfo_dialog.ui
 )
 
 set( RESOURCES
@@ -137,13 +145,14 @@ include( ${QT_USE_FILE} )
 
 include_directories( 
   ${CMAKE_CURRENT_BINARY_DIR}
+  ${libtia_INCLUDE_DIRS}
   ${TIASCOPE_ROOT}/src
   ${TIASCOPE_ROOT}/external/include
 )
 
 add_executable( tiascope ${SOURCES} ${HEADERS_MOC} ${FORMS_HEADERS} ${RESOURCES_RCC} )
-target_link_libraries( tiascope ${QT_LIBRARIES} )
-add_dependencies( tiascope tiascope-git )
+target_link_libraries( tiascope tia ticpp ${QT_LIBRARIES} ${Boost_LIBRARIES} )
+add_dependencies( tiascope tiascope-git libtia )
 
 
 install( TARGETS tiascope
