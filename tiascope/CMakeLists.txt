@@ -44,16 +44,15 @@ set( HEADERS
   ${TIASCOPE_ROOT}/src/data_collector/qt_tia_client/impl/tia_client_version02.h
   ${TIASCOPE_ROOT}/src/data_collector/filters.h
   ${TIASCOPE_ROOT}/src/data_collector/filters/filter.h
-  ${TIASCOPE_ROOT}/src/data_collector/filters/butterworth_filter.h
+  ${TIASCOPE_ROOT}/src/data_collector/filters/butterworth_filter.h  
   ${TIASCOPE_ROOT}/src/data_collector/qt_tia_client/datapacket.h
-  ${TIASCOPE_ROOT}/src/data_collector/qt_tia_client/tia_types.h
   ${TIASCOPE_ROOT}/src/data_collector/qt_tia_client/impl/tia_datapacket_version2.h
   ${TIASCOPE_ROOT}/src/data_collector/qt_tia_client/tia_exception.h
-  ${TIASCOPE_ROOT}/src/data_collector/qt_tia_client/tia_metainfo.h
-  ${TIASCOPE_ROOT}/src/data_collector/qt_tia_client/impl/tia_client_version10.h
   ${TIASCOPE_ROOT}/src/data_collector/qt_tia_client/impl/tia_control_message.h
   ${TIASCOPE_ROOT}/src/data_collector/qt_tia_client/impl/data_receive_blocker.h
   ${TIASCOPE_ROOT}/src/data_collector/qt_tia_client/impl/line_receive_blocker.h
+  ${TIASCOPE_ROOT}/src/data_collector/qt_tia_client/impl/tia_datapacket_basedlibtia.h
+  ${TIASCOPE_ROOT}/src/data_collector/qt_tia_client/impl/tia_client_based_libtia.h
 
   ${TIASCOPE_ROOT}/src/visualisation/channel_graphics_object.h
   ${TIASCOPE_ROOT}/src/visualisation/signal_graphics_object.h
@@ -94,11 +93,13 @@ set( SOURCES
   ${TIASCOPE_ROOT}/src/data_collector/qt_tia_client/impl/tia_client_version02.cpp
   ${TIASCOPE_ROOT}/src/data_collector/filters.cpp
   ${TIASCOPE_ROOT}/src/data_collector/filters/butterworth_filter.cpp
-  ${TIASCOPE_ROOT}/src/data_collector/qt_tia_client/tia_types.cpp
+  ${TIASCOPE_ROOT}/src/data_collector/qt_tia_client/qt_tia_client.cpp
+  ${TIASCOPE_ROOT}/src/data_collector/qt_tia_client/impl/tia_client_version02.cpp
   ${TIASCOPE_ROOT}/src/data_collector/qt_tia_client/impl/tia_datapacket_version2.cpp
-  ${TIASCOPE_ROOT}/src/data_collector/qt_tia_client/impl/tia_client_version10.cpp
   ${TIASCOPE_ROOT}/src/data_collector/qt_tia_client/impl/data_receive_blocker.cpp
   ${TIASCOPE_ROOT}/src/data_collector/qt_tia_client/impl/line_receive_blocker.cpp
+  ${TIASCOPE_ROOT}/src/data_collector/qt_tia_client/impl/tia_datapacket_basedlibtia.cpp
+  ${TIASCOPE_ROOT}/src/data_collector/qt_tia_client/impl/tia_client_based_libtia.cpp
 
   ${TIASCOPE_ROOT}/src/visualisation/channel_graphics_object.cpp
   ${TIASCOPE_ROOT}/src/visualisation/signal_graphics_object.cpp
