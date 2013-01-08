@@ -15,6 +15,7 @@ include_directories(
   ${ticpp_INCLUDE_DIR}
   ${rapidxml_INCLUDE_DIRS}
   ${filterTools_INCLUDE_DIR}
+  ${spuc_INCLUDE_DIRS}
   ${Boost_INCLUDE_DIR}
 )
 
