@@ -148,7 +148,10 @@ include_directories(
   ${libtia_INCLUDE_DIRS}
   ${TIASCOPE_ROOT}/src
   ${TIASCOPE_ROOT}/external/include
+  ${Boost_INCLUDE_DIR}
 )
+
+link_directories( ${Boost_LIBRARY_DIRS} )
 
 add_executable( tiascope ${SOURCES} ${HEADERS_MOC} ${FORMS_HEADERS} ${RESOURCES_RCC} )
 target_link_libraries( tiascope tia ticpp ${QT_LIBRARIES} ${Boost_LIBRARIES} )
