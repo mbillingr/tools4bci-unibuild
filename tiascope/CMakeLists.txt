@@ -4,6 +4,8 @@ project( TiAscope )
 
 configure_libtia()
 
+add_definitions( -DTIA_BRUTEFORCE_SIGNALHACK )
+
 find_package( Boost REQUIRED COMPONENTS system thread )
 
 find_package( Qt4 REQUIRED )
