@@ -9,6 +9,8 @@ set( T4B_LIBBUNDLE_ROOT ${CMAKE_SOURCE_DIR}/extern_bundle CACHE PATH "Path to th
 set( T4B_EXTERNALS_SOURCE ${CMAKE_SOURCE_DIR}/extern CACHE PATH "Path to build files for external libraries" )
 set( T4B_EXTERNALS_BINARY ${CMAKE_BINARY_DIR}/extern CACHE PATH "Where to build external libraries" )
 
+set( BUILD_PYTHON_MODULES true CACHE bool "" )
+
 if( ${UNIX} )
   set( BUILD_SHARED_LIBS true CACHE BOOL "Shared libs or static libs..." )
   set( BUILD_SIGSERVER true CACHE BOOL "" )
@@ -115,7 +117,7 @@ IF("${isSystemDir}" STREQUAL "-1")
    SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 ENDIF("${isSystemDir}" STREQUAL "-1")
 
-####################################################################################ü
+####################################################################################
 
 add_subdirectory( extern )
 
@@ -138,7 +140,12 @@ if( ${BUILD_TIASCOPE} )
   git_update( tiascope-git git://git.code.sf.net/p/tools4bci/tiascope/code ${TIASCOPE_ROOT} master )
   add_subdirectory( tiascope )
 endif()
-  
+
+####################################################################################
+
+
+####################################################################################
+
 foreach( item IN LISTS T4B_BUILDLIST )
   message( "Building ${item}" )
 endforeach()

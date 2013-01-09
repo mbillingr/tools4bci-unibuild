@@ -13,4 +13,9 @@ if( ${UNIX} )
   add_subdirectory( tobiplatform )
 endif()
 
+if( ${BUILD_PYTHON_MODULES} )
+  add_subdirectory( python )
+endif()
+
+
 set( T4B_BUILDLIST ${T4B_BUILDLIST} PARENT_SCOPE )
