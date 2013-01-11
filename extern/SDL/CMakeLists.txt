@@ -36,6 +36,7 @@ if( ${BUNDLE_USE_SDL} )
   endif()
   
   set( SDL_INCLUDE_DIR ${T4B_LIBBUNDLE_ROOT}/SDL/include CACHE PATH "library include paths" FORCE )
+  install( DIRECTORY ${SDL_INCLUDE_DIR}/SDL DESTINATION include )
 else()
   #unset( SDL_INCLUDE_DIR CACHE )
   #unset( SDL_LIBRARY CACHE )

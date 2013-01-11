@@ -80,8 +80,8 @@ set( BUILD_TID_CLIENT true CACHE BOOL "build TiD Client?" )
 
 link_directories( ${Boost_LIBRARY_DIRS} )
 
-install( FILES ${FULL_TID_HEADERS} DESTINATION include/tid )
-install( FILES ${FULL_MSG_HEADERS} DESTINATION include/tid/messages )
+install( FILES ${FULL_TID_HEADERS} DESTINATION include/libtid )
+install( FILES ${FULL_MSG_HEADERS} DESTINATION include/libtid/messages )
 install( TARGETS tid
 	RUNTIME DESTINATION bin
 	LIBRARY DESTINATION lib
