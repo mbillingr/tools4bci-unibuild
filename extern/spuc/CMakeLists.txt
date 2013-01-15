@@ -6,9 +6,9 @@ set( BUNDLE_USE_spuc true CACHE BOOL "use the bundled version of the library?" )
 
 if( ${BUNDLE_USE_spuc} )
   set( spuc_INCLUDE_DIRS 
-    ${T4B_LIBBUNDLE_ROOT}/spuc/include CACHE PATH 
-    ${T4B_LIBBUNDLE_ROOT}/spuc/include/spuc/generic CACHE PATH 
-    "library include paths" )
+    ${T4B_LIBBUNDLE_ROOT}/spuc/include
+    ${T4B_LIBBUNDLE_ROOT}/spuc/include/spuc/generic
+    CACHE PATH "library include paths" )
   set( HAVE_spuc true CACHE INTERNAL "" )
 
 else()
