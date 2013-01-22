@@ -8,7 +8,7 @@ add_definitions( -DTIA_BRUTEFORCE_SIGNALHACK )
 
 find_package( Boost REQUIRED COMPONENTS system thread )
 
-find_package( Qt4 REQUIRED )
+set( QT_USE_IMPORTED_TARGETS true )
 set( QT_USE_QTNETWORK true )
 #set( QT_USE_QTOPENGL true )
 #set( QT_USE_QTSQL true )
@@ -19,6 +19,7 @@ set( QT_USE_QTXML true )
 #set( QT_USE_QTWEBKIT true )
 #set( QT_USE_QTXMLPATTERNS true )
 #set( QT_USE_PHONON true )
+find_package( Qt4 REQUIRED )
 
 set( HEADERS
   ${TIASCOPE_ROOT}/src/main_window.h
@@ -166,3 +167,11 @@ install( TARGETS tiascope
 	ARCHIVE DESTINATION lib
 )
 
+if( WIN32 )
+	foreach( qlib IN LISTS QT_LIBRARIES )
+		string( REPLACE "Qt4::" "" qlib ${qlib} )
+		message( ${qlib} )
+		install( FILES ${QT_BINARY_DIR}/${qlib}4.dll DESTINATION bin
+		)
+	endforeach()
+endif()
