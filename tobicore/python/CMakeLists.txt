@@ -6,9 +6,14 @@ find_package( Boost REQUIRED COMPONENTS system thread date_time regex chrono )
 find_package( Cython REQUIRED )
 find_package( PythonLibs REQUIRED )
 
-get_filename_component( CYX ${CYTHON_EXECUTABLE} PROGRAM PROGRAM_ARGS CYARG )
-string( STRIP ${CYARG} CYARG )
-#message( "${CYX} ${CYARG} --cplus ${TOBICORE_ROOT}/python/pytid.pyx")
+if( WIN32 )
+  get_filename_component( CYX ${CYTHON_EXECUTABLE} PROGRAM PROGRAM_ARGS CYARG )
+  string( STRIP ${CYARG} CYARG )
+else()
+  set( CYX ${CYTHON_EXECUTABLE} )
+endif()
+
+message( "${CYX} ${CYARG} --cplus ${TOBICORE_ROOT}/python/pytid.pyx")
 
 add_custom_command(
   OUTPUT ${TOBICORE_ROOT}/python/pytid.cpp
