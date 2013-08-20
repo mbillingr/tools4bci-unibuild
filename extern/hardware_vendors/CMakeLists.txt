@@ -8,6 +8,7 @@ if( ${UNIX} )
   set( HAVE_nirscout false CACHE INTERNAL "" )
   set( HAVE_usbamp false CACHE INTERNAL "" )
   set( HAVE_plux false CACHE INTERNAL "" )
+  set( HAVE_tmsi false CACHE INTERNAL "" )
 elseif( ${WIN32} )
   set( HAVE_brainproducts true CACHE INTERNAL "" )
   list( APPEND INC_DIRS ${HWV_ROOT}/brainproducts/include )
@@ -24,6 +25,9 @@ elseif( ${WIN32} )
     debug ${HWV_ROOT}/plux/lib/${T4B_LIBPART}/BioPlux_d.lib
 	optimized ${HWV_ROOT}/plux/lib/${T4B_LIBPART}/BioPlux.lib
 	CACHE PATH "link libraries for plux" )
+	
+  set( HAVE_tmsi true CACHE INTERNAL "" )
+  list( APPEND INC_DIRS ${HWV_ROOT}/tmsi/include )
 else()
 endif()
 

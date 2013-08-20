@@ -24,6 +24,12 @@ else()
   set( SIGSERVER_BUILD_BRAINPRODUCTS false CACHE BOOL "Hardware Device: brainamp series" FORCE )
 endif()
 
+if( ${HAVE_tmsi} )
+  set( SIGSERVER_BUILD_TMSI true CACHE BOOL "Hardware Device: TMSi" )
+else()
+  set( SIGSERVER_BUILD_TMSI false CACHE BOOL "Hardware Device: TMSi" FORCE )
+endif()
+
 if( ${HAVE_dataq} )
   set( SIGSERVER_BUILD_DATAQ true CACHE BOOL "Hardware Device: dataq" )
 else()

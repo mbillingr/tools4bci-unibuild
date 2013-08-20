@@ -154,6 +154,16 @@ if( ${SIGSERVER_BUILD_KINECT} )
   set( SOURCES ${SOURCES} hardware/kinect.cpp )
 endif()
 
+if( ${SIGSERVER_BUILD_TMSI} )
+  if( ${UNIX} )
+    message( "WARNING: TMSi not supported under Unix." )
+  endif()
+  if( ${WIN32} )
+    set( HEADERS ${HEADERS} hardware/tmsi.h )
+    set( SOURCES ${SOURCES} hardware/tmsi.cpp )
+  endif()
+endif()
+
 
 # add full path to sources and headers
 
