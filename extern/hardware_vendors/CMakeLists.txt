@@ -16,8 +16,8 @@ elseif( ${WIN32} )
   set( HAVE_dataq true CACHE INTERNAL "" )
   list( APPEND INC_DIRS ${HWV_ROOT}/dataq/include )
   
-  set( HAVE_nirscout true CACHE INTERNAL "" )
-  list( APPEND INC_DIRS ${HWV_ROOT}/NIRScout/include )
+  set( HAVE_nirscout false CACHE INTERNAL "" )
+#  list( APPEND INC_DIRS ${HWV_ROOT}/NIRScout/include )
   
   set( HAVE_plux true CACHE INTERNAL "" )
   list( APPEND INC_DIRS ${HWV_ROOT}/plux/include )

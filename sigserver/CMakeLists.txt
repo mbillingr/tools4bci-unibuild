@@ -77,7 +77,7 @@ include_directories(
 
 #message( "************** ${HW_VENDORS_INCLUDE_DIRS}" )
 
-set( CONFIG_TIMING_TEST true CACHE BOOL "Build SigServer with timing tests (LptTools)" )
+set( CONFIG_TIMING_TEST false CACHE BOOL "Build SigServer with timing tests (LptTools)" )
 
 add_subdirectory( src )
   
